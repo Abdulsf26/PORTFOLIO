@@ -119,6 +119,29 @@ const PreviewBtn = styled.a`
   }
 `;
 
+const DownloadBtn = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  flex: 1;
+  background-color: ${props => props.theme.text};
+  color: ${props => props.theme.body};
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 7px;
+  font-size: 0.8rem;
+  font-family: 'Karla', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    opacity: 0.82;
+    transform: translateY(-1px);
+  }
+`;
+
 const NoPreview = styled.span`
   display: inline-flex;
   align-items: center;
@@ -168,7 +191,7 @@ const Item = {
 };
 
 const Card = (props) => {
-  const { id, name, description, tags, demo, github, hasDemo, hasGithub } = props.data;
+  const { id, name, description, tags, demo, github, hasDemo, hasGithub, isDownload } = props.data;
 
   return (
     <Box variants={Item} whileHover={{ scale: 1.01 }}>
@@ -184,9 +207,15 @@ const Card = (props) => {
       </div>
       <Footer>
         {hasDemo ? (
-          <PreviewBtn href={demo} target="_blank" rel="noopener noreferrer">
-            ↗ Preview
-          </PreviewBtn>
+          isDownload ? (
+            <DownloadBtn href={demo} download="agri.pdf">
+              ⬇ Download PDF
+            </DownloadBtn>
+          ) : (
+            <PreviewBtn href={demo} target="_blank" rel="noopener noreferrer">
+              ↗ Preview
+            </PreviewBtn>
+          )
         ) : (
           <NoPreview>In Progress</NoPreview>
         )}
