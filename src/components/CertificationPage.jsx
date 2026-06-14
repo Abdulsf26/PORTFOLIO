@@ -46,12 +46,14 @@ const Container = styled.div`
   }
 
   @media (max-width: 768px) {
+    position: relative;
     flex-direction: column;
-    height: 75vh;
-    top: 9rem;
-    left: 5%;
-    width: 90%;
-    gap: 1.5rem;
+    width: 92vw;
+    height: auto;
+    left: unset;
+    top: unset;
+    margin: 5rem auto 2rem auto;
+    gap: 1.25rem;
   }
 `;
 

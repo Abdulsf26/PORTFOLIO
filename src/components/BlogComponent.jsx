@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import React from "react";
-// import { NavLink } from 'react-router-dom'
 import styled from "styled-components";
 
 const Box = styled(motion.div)`
@@ -23,6 +22,12 @@ const Box = styled(motion.div)`
     background-color: ${(props) => props.theme.text};
     transition: all 0.3s ease;
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+    min-height: 14rem;
+  }
 `;
 
 const Image = styled.div`
@@ -36,27 +41,39 @@ const Image = styled.div`
   ${Box}:hover & {
     border: 1px solid ${(props) => props.theme.body};
   }
+
+  @media (max-width: 768px) {
+    height: 140px;
+  }
 `;
+
 const Title = styled.h3`
   color: inherit;
   padding: 0.5rem 0;
-  padding-top: 1rem;
+  padding-top: 0.75rem;
   font-family: "Karla", sans-serif;
   font-weight: 700;
+  font-size: 0.9rem;
   border-bottom: 1px solid ${(props) => props.theme.text};
 
   ${Box}:hover & {
     border-bottom: 1px solid ${(props) => props.theme.body};
   }
 `;
+
 const HashTags = styled.div`
-  padding: 0.5rem 0;
+  padding: 0.35rem 0;
+  font-size: 0.78rem;
 `;
+
 const Tag = styled.span`
   padding-right: 0.5rem;
 `;
+
 const Date = styled.span`
-  padding: 0.5rem 0;
+  padding: 0.35rem 0;
+  font-size: 0.78rem;
+  display: block;
 `;
 
 const Container = styled(motion.div)``;

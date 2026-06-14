@@ -35,6 +35,15 @@ cursor: pointer;
     text-decoration: none;
     color: inherit;
 }
+
+@media (max-width: 768px) {
+  left: unset;
+  right: 1rem;
+  top: 0.85rem;
+  transform: none;
+  width: 2rem;
+  height: 2rem;
+}
 `
 
 const PowerButton = () => {
