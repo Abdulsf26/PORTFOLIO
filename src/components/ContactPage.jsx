@@ -23,6 +23,15 @@ const Box = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 768px) {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    align-items: flex-start;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+  }
 `;
 
 const FormContainer = styled(motion.div)`

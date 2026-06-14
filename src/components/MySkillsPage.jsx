@@ -18,6 +18,10 @@ position: relative;
 padding: 8rem 4rem 4rem 4rem;
 box-sizing: border-box;
 overflow-y: auto;
+
+@media (max-width: 768px) {
+  padding: 6rem 1rem 3rem 1rem;
+}
 `
 
 const GridContainer = styled.div`
@@ -26,6 +30,11 @@ const GridContainer = styled.div`
   gap: 2rem;
   justify-content: center;
   align-items: stretch;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
 `
 
 const Main = styled.div`

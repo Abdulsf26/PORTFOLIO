@@ -13,9 +13,15 @@ import astronaut from '../assets/Images/astronaut.png'
 const Box = styled.div`
 background-color: ${props => props.theme.body};
 width: 100vw;
-height:100vh;
+height: 100vh;
 position: relative;
 overflow: hidden;
+
+@media (max-width: 768px) {
+  height: auto;
+  min-height: 100vh;
+  overflow-y: auto;
+}
 `
 const float = keyframes`
 0% { transform: translateY(-10px) }
@@ -33,6 +39,13 @@ img{
     width: 100%;
     height: auto;
 }
+
+@media (max-width: 768px) {
+  width: 40vw;
+  top: 2%;
+  right: 2%;
+  opacity: 0.3;
+}
 `
 const Main = styled.div`
   border: 2px solid ${(props) => props.theme.text};
@@ -46,13 +59,23 @@ const Main = styled.div`
   justify-content: center;
   align-items: center;
   font-size: calc(0.6rem + 1vw);
- backdrop-filter: blur(4px);
-  
+  backdrop-filter: blur(4px);
   position: absolute;
   left: calc(5rem + 5vw);
   top: 10rem;
   font-family: 'Ubuntu Mono', monospace;
   font-style: italic;
+
+  @media (max-width: 768px) {
+    position: relative;
+    left: unset;
+    top: unset;
+    width: 90vw;
+    height: auto;
+    margin: 6rem auto 2rem auto;
+    font-size: 0.95rem;
+    padding: 1.5rem;
+  }
 `
 
 

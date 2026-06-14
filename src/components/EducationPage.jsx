@@ -19,6 +19,14 @@ const Box = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 768px) {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    align-items: flex-start;
+    padding-top: 5rem;
+  }
 `;
 
 const Container = styled.div`
@@ -32,7 +40,10 @@ const Container = styled.div`
   z-index: 3;
 
   @media (max-width: 768px) {
-    width: 85vw;
+    width: 92vw;
+    height: auto;
+    min-height: 60vh;
+    margin-bottom: 2rem;
   }
 `;
 

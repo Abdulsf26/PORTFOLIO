@@ -14,18 +14,27 @@ const MainContainer = styled.div`
 background: ${props => props.theme.body};
 width: 100vw;
 height: 100vh;
-overflow:hidden;
-
+overflow: hidden;
 position: relative;
 
 h2,h3,h4,h5,h6{
   font-family:'Karla', sans-serif ;
   font-weight:500;
 }
+
+@media (max-width: 768px) {
+  overflow-y: auto;
+  height: auto;
+  min-height: 100vh;
+}
 `
 
 const Container = styled.div`
 padding: 2rem;
+
+@media (max-width: 768px) {
+  padding: 1rem;
+}
 `
 
 const Contact = styled(NavLink)`
@@ -35,46 +44,64 @@ top: 2rem;
 right: calc(1rem + 2vw);
 text-decoration: none;
 z-index:1;
+
+@media (max-width: 768px) {
+  font-size: 0.8rem;
+  top: 1rem;
+  right: 1rem;
+}
 `;
 const CERTIFICATIONS = styled(NavLink)`
   color: ${props => props.theme.text};
-
   position: absolute;
   top: 35%;
   right: calc(1rem + 2vw);
   transform: translate(50%, -50%) rotate(90deg);
   text-decoration: none;
   z-index:1;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 const BLOG = styled(NavLink)`
   color: ${props => props.$click ? props.theme.body : props.theme.text};
-
   position: absolute;
   top: 58%;
   left: calc(1rem + 2vw);
   transform: translate(-50%, -50%) rotate(-90deg);
   text-decoration: none;
   z-index:1;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 const WORK = styled(NavLink)`
   color: ${props => props.theme.text};
-
   position: absolute;
   top: 58%;
   right: calc(1rem + 2vw);
   transform: translate(50%, -50%) rotate(90deg);
   text-decoration: none;
   z-index:1;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 const EDUCATION = styled(NavLink)`
   color: ${props => props.$click ? props.theme.body : props.theme.text};
-
   position: absolute;
   top: 35%;
   left: calc(1rem + 2vw);
   transform: translate(-50%, -50%) rotate(-90deg);
   text-decoration: none;
   z-index:1;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 
@@ -87,17 +114,61 @@ width: 100%;
 
 display: flex;
 justify-content: space-evenly;
+
+@media (max-width: 768px) {
+  bottom: 0.5rem;
+}
 `
 
 const ABOUT = styled(NavLink)`
 color: ${props => props.$click ? props.theme.body : props.theme.text};
 text-decoration: none;
 z-index:1;
+
+@media (max-width: 768px) {
+  font-size: 0.85rem;
+}
 `
 const SKILLS = styled(NavLink)`
 color: ${props => props.theme.text};
 text-decoration: none;
 z-index:1;
+
+@media (max-width: 768px) {
+  font-size: 0.85rem;
+}
+`
+
+// Mobile nav grid shown only on mobile
+const MobileNav = styled.div`
+display: none;
+
+@media (max-width: 768px) {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  padding: 1rem;
+  margin-top: 11rem;
+  position: relative;
+  z-index: 3;
+}
+`
+
+const MobileNavItem = styled(NavLink)`
+  color: ${props => props.$click ? props.theme.body : props.theme.text};
+  text-decoration: none;
+  border: 1.5px solid ${props => props.$click ? props.theme.body : props.theme.text};
+  padding: 0.75rem;
+  text-align: center;
+  font-family: 'Karla', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+
+  &:hover {
+    opacity: 0.7;
+  }
 `
 
 const rotate = keyframes`
@@ -133,6 +204,16 @@ transition: all 1s ease;
     display: ${props => props.$click ? 'none' : 'inline-block'};
     padding-top: 1rem;
 }
+
+@media (max-width: 768px) {
+  top: ${props => props.$click ? '10%' : '35%'};
+  left: 50%;
+
+  &>:first-child {
+    width: 100px;
+    height: 100px;
+  }
+}
 `
 
 const DarkDiv = styled.div`
@@ -145,6 +226,10 @@ width: ${props => props.$click ? '50%' : '0%'};
 height: ${props => props.$click ? '100%' : '0%'};
 z-index:1;
 transition: height 0.5s ease, width 1s ease 0.5s;
+
+@media (max-width: 768px) {
+  display: none;
+}
 `
 
 
@@ -167,6 +252,7 @@ const Main = () => {
                     <span>CLICK HERE</span>
                 </Center>
 
+                {/* Desktop nav items (rotated, side) */}
                 <CERTIFICATIONS to="/certifications">
                     <motion.h2
                         initial={{
@@ -248,6 +334,18 @@ const Main = () => {
                         EDUCATION
                     </motion.h2>
                 </EDUCATION>
+
+                {/* Mobile nav grid */}
+                <MobileNav>
+                    <MobileNavItem to="/about" $click={click}>ABOUT</MobileNavItem>
+                    <MobileNavItem to="/skills">MY SKILLS</MobileNavItem>
+                    <MobileNavItem to="/work">WORK</MobileNavItem>
+                    <MobileNavItem to="/blog" $click={click}>BLOG</MobileNavItem>
+                    <MobileNavItem to="/education" $click={click}>EDUCATION</MobileNavItem>
+                    <MobileNavItem to="/certifications">CERTIFICATIONS</MobileNavItem>
+                    <MobileNavItem to="/contact" style={{ gridColumn: 'span 2' }}>CONTACT ME</MobileNavItem>
+                </MobileNav>
+
                 <BottomBar>
                     <ABOUT to="/about" $click={click}>
                         <motion.h2

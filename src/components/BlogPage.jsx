@@ -33,12 +33,24 @@ display: flex;
 justify-content: center;
 align-items: center;
 padding-top: 10rem;
+
+@media (max-width: 768px) {
+  padding-top: 7rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
 `
 
 const Grid = styled.div`
 display: grid;
 grid-template-columns: repeat(2, minmax(calc(10rem + 15vw), 1fr));
 grid-gap: calc(1rem + 2vw);
+
+@media (max-width: 768px) {
+  grid-template-columns: 1fr;
+  grid-gap: 1.2rem;
+  width: 100%;
+}
 `
 
 // Framer-motion config
