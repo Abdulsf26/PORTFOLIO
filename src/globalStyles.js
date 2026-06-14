@@ -18,12 +18,19 @@ body{
     font-family: 'Source Sans Pro',sans-serif;
 }
 
-/* Prevent horizontal scroll on all pages */
+/* Prevent horizontal scroll on all pages but allow native vertical scroll */
 html, body {
     max-width: 100vw;
     overflow-x: hidden;
 }
 
+@media (max-width: 768px) {
+  body {
+    min-height: 100dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
 `
 
 export default GlobalStyle;

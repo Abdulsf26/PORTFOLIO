@@ -20,12 +20,19 @@ transform: rotate(135deg);
 
 }
 
+@media (max-width: 768px) {
+  display: none;
+}
 `
 
 const PreDisplay = styled.div`
 position: absolute;
 top:0;
 right: 2rem;
+
+@media (max-width: 768px) {
+  display: none;
+}
 `
 
 

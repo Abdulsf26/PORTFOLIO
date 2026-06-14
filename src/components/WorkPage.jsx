@@ -22,7 +22,8 @@ const Box = styled.div`
   overflow-y: auto;
 
   @media (max-width: 768px) {
-    padding: 6rem 1rem 3rem 1rem;
+    padding: 5rem 1rem 3rem 1rem;
+    height: auto;
   }
 `;
 

@@ -23,14 +23,17 @@ h2,h3,h4,h5,h6{
 }
 
 @media (max-width: 768px) {
-  overflow-y: auto;
-  height: auto;
-  min-height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 `
 
 const Container = styled.div`
 padding: 2rem;
+width: 100%;
+height: 100%;
 
 @media (max-width: 768px) {
   padding: 1rem;
@@ -46,9 +49,7 @@ text-decoration: none;
 z-index:1;
 
 @media (max-width: 768px) {
-  font-size: 0.8rem;
-  top: 1rem;
-  right: 1rem;
+  display: none;
 }
 `;
 const CERTIFICATIONS = styled(NavLink)`
@@ -116,7 +117,7 @@ display: flex;
 justify-content: space-evenly;
 
 @media (max-width: 768px) {
-  bottom: 0.5rem;
+  display: none;
 }
 `
 
@@ -124,51 +125,11 @@ const ABOUT = styled(NavLink)`
 color: ${props => props.$click ? props.theme.body : props.theme.text};
 text-decoration: none;
 z-index:1;
-
-@media (max-width: 768px) {
-  font-size: 0.85rem;
-}
 `
 const SKILLS = styled(NavLink)`
 color: ${props => props.theme.text};
 text-decoration: none;
 z-index:1;
-
-@media (max-width: 768px) {
-  font-size: 0.85rem;
-}
-`
-
-// Mobile nav grid shown only on mobile
-const MobileNav = styled.div`
-display: none;
-
-@media (max-width: 768px) {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
-  padding: 1rem;
-  margin-top: 11rem;
-  position: relative;
-  z-index: 3;
-}
-`
-
-const MobileNavItem = styled(NavLink)`
-  color: ${props => props.$click ? props.theme.body : props.theme.text};
-  text-decoration: none;
-  border: 1.5px solid ${props => props.$click ? props.theme.body : props.theme.text};
-  padding: 0.75rem;
-  text-align: center;
-  font-family: 'Karla', sans-serif;
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.5px;
-  transition: all 0.2s;
-
-  &:hover {
-    opacity: 0.7;
-  }
 `
 
 const rotate = keyframes`
@@ -206,13 +167,7 @@ transition: all 1s ease;
 }
 
 @media (max-width: 768px) {
-  top: ${props => props.$click ? '10%' : '35%'};
-  left: 50%;
-
-  &>:first-child {
-    width: 100px;
-    height: 100px;
-  }
+  display: none; /* Hide the big YinYang clicker entirely on mobile */
 }
 `
 
@@ -236,6 +191,10 @@ transition: height 0.5s ease, width 1s ease 0.5s;
 const Main = () => {
 
     const [click, setClick] = useState(false);
+
+    // On mobile, click should default to true so the Intro shows immediately
+    const isMobile = window.innerWidth <= 768;
+    const showIntro = isMobile ? true : click;
 
     const handleClick = () => setClick(!click);
 
@@ -335,17 +294,6 @@ const Main = () => {
                     </motion.h2>
                 </EDUCATION>
 
-                {/* Mobile nav grid */}
-                <MobileNav>
-                    <MobileNavItem to="/about" $click={click}>ABOUT</MobileNavItem>
-                    <MobileNavItem to="/skills">MY SKILLS</MobileNavItem>
-                    <MobileNavItem to="/work">WORK</MobileNavItem>
-                    <MobileNavItem to="/blog" $click={click}>BLOG</MobileNavItem>
-                    <MobileNavItem to="/education" $click={click}>EDUCATION</MobileNavItem>
-                    <MobileNavItem to="/certifications">CERTIFICATIONS</MobileNavItem>
-                    <MobileNavItem to="/contact" style={{ gridColumn: 'span 2' }}>CONTACT ME</MobileNavItem>
-                </MobileNav>
-
                 <BottomBar>
                     <ABOUT to="/about" $click={click}>
                         <motion.h2
@@ -383,9 +331,10 @@ const Main = () => {
                 </BottomBar>
 
             </Container>
-            {click ? <Intro click={click} /> : null}
+            {showIntro ? <Intro click={click} /> : null}
         </MainContainer>
     )
 }
 
 export default Main
+

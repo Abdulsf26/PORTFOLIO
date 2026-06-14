@@ -6,6 +6,8 @@ import styled from 'styled-components'
 import { PowerBtn } from '../components/AllSvgs'
 
 
+import MobileMenu from './MobileMenu'
+
 const Power = styled.button`
 position: fixed;
 top: 2rem;
@@ -37,23 +39,22 @@ cursor: pointer;
 }
 
 @media (max-width: 768px) {
-  left: unset;
-  right: 1rem;
-  top: 0.85rem;
-  transform: none;
-  width: 2rem;
-  height: 2rem;
+  display: none;
 }
 `
 
 const PowerButton = () => {
     return (
-        <Power>
-        <NavLink to="/">
-        <PowerBtn width={30} height={30} fill='currentColor' />
-        </NavLink>
-        </Power>
+        <>
+            <Power>
+                <NavLink to="/">
+                    <PowerBtn width={30} height={30} fill='currentColor' />
+                </NavLink>
+            </Power>
+            <MobileMenu />
+        </>
     )
 }
 
 export default PowerButton
+

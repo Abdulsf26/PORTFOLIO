@@ -21,6 +21,10 @@ overflow: hidden;
   height: auto;
   min-height: 100vh;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 `
 const float = keyframes`
