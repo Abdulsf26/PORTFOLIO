@@ -43,7 +43,7 @@ cursor: pointer;
 }
 `
 
-const PowerButton = () => {
+const PowerButton = ({theme}) => {
     return (
         <>
             <Power>
@@ -51,7 +51,7 @@ const PowerButton = () => {
                     <PowerBtn width={30} height={30} fill='currentColor' />
                 </NavLink>
             </Power>
-            <MobileMenu />
+            <MobileMenu theme={theme} />
         </>
     )
 }

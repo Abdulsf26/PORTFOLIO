@@ -28,7 +28,11 @@ const HamburgerButton = styled.button`
     div {
       width: 2rem;
       height: 0.25rem;
-      background: ${({ theme, $isOpen }) => $isOpen ? theme.body : theme.text};
+      background: ${({ theme, $isOpen, $themeProp }) => {
+        if ($isOpen) return theme.body;
+        if ($themeProp === 'dark') return theme.body;
+        return theme.text;
+      }};
       border-radius: 10px;
       transition: all 0.3s linear;
       position: relative;
@@ -113,7 +117,7 @@ const MobileMenu = ({ theme }) => {
 
   return (
     <>
-      <HamburgerButton $isOpen={isOpen} onClick={toggleMenu}>
+      <HamburgerButton $isOpen={isOpen} onClick={toggleMenu} $themeProp={theme}>
         <div />
         <div />
         <div />

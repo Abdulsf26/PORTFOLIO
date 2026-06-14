@@ -21,22 +21,16 @@ h2,h3,h4,h5,h6{
   font-family:'Karla', sans-serif ;
   font-weight:500;
 }
-
-@media (max-width: 768px) {
-  height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 `
 
 const Container = styled.div`
 padding: 2rem;
 width: 100%;
 height: 100%;
+position: relative;
 
 @media (max-width: 768px) {
-  padding: 1rem;
+  display: none;
 }
 `
 
@@ -52,6 +46,7 @@ z-index:1;
   display: none;
 }
 `;
+
 const CERTIFICATIONS = styled(NavLink)`
   color: ${props => props.theme.text};
   position: absolute;
@@ -65,6 +60,7 @@ const CERTIFICATIONS = styled(NavLink)`
     display: none;
   }
 `;
+
 const BLOG = styled(NavLink)`
   color: ${props => props.$click ? props.theme.body : props.theme.text};
   position: absolute;
@@ -78,6 +74,7 @@ const BLOG = styled(NavLink)`
     display: none;
   }
 `;
+
 const WORK = styled(NavLink)`
   color: ${props => props.theme.text};
   position: absolute;
@@ -91,6 +88,7 @@ const WORK = styled(NavLink)`
     display: none;
   }
 `;
+
 const EDUCATION = styled(NavLink)`
   color: ${props => props.$click ? props.theme.body : props.theme.text};
   position: absolute;
@@ -104,7 +102,6 @@ const EDUCATION = styled(NavLink)`
     display: none;
   }
 `;
-
 
 const BottomBar = styled.div`
 position: absolute;
@@ -126,6 +123,7 @@ color: ${props => props.$click ? props.theme.body : props.theme.text};
 text-decoration: none;
 z-index:1;
 `
+
 const SKILLS = styled(NavLink)`
 color: ${props => props.theme.text};
 text-decoration: none;
@@ -167,7 +165,7 @@ transition: all 1s ease;
 }
 
 @media (max-width: 768px) {
-  display: none; /* Hide the big YinYang clicker entirely on mobile */
+  display: none;
 }
 `
 
@@ -187,22 +185,36 @@ transition: height 0.5s ease, width 1s ease 0.5s;
 }
 `
 
+const MobileContainer = styled.div`
+  display: none;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100dvh;
+    background: linear-gradient(135deg, ${props => props.theme.body} 0%, #e2dcd9 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
+`
 
 const Main = () => {
 
     const [click, setClick] = useState(false);
-
-    // On mobile, click should default to true so the Intro shows immediately
-    const isMobile = window.innerWidth <= 768;
-    const showIntro = isMobile ? true : click;
-
     const handleClick = () => setClick(!click);
+
+    const isMobile = window.innerWidth <= 768;
 
     return (
         <MainContainer>
+            {/* DESKTOP LAYOUT */}
             <DarkDiv $click={click} />
-            <Container>
-                <PowerButton />
+            <Container className="desktop-container">
+                <PowerButton theme={click ? 'dark' : 'light'} />
                 <LogoComponent theme={click ? 'dark' : 'light'} />
                 <SocialIcons theme={click ? 'dark' : 'light'} />
 
@@ -211,127 +223,63 @@ const Main = () => {
                     <span>CLICK HERE</span>
                 </Center>
 
-                {/* Desktop nav items (rotated, side) */}
                 <CERTIFICATIONS to="/certifications">
-                    <motion.h2
-                        initial={{
-                            y: -200,
-                            transition: { type: 'spring', duration: 1.5, delay: 1 }
-                        }}
-                        animate={{
-                            y: 0,
-                            transition: { type: 'spring', duration: 1.5, delay: 1 }
-                        }}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                    >
+                    <motion.h2 initial={{ y: -200 }} animate={{ y: 0 }} transition={{ type: 'spring', duration: 1.5, delay: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                         CERTIFICATIONS
                     </motion.h2>
                 </CERTIFICATIONS>
 
                 <Contact to="/contact">
-                    <motion.h2
-                        initial={{
-                            y: -200,
-                            transition: { type: 'spring', duration: 1.5, delay: 1 }
-                        }}
-                        animate={{
-                            y: 0,
-                            transition: { type: 'spring', duration: 1.5, delay: 1 }
-                        }}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                    >
+                    <motion.h2 initial={{ y: -200 }} animate={{ y: 0 }} transition={{ type: 'spring', duration: 1.5, delay: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                         CONTACT ME
                     </motion.h2>
                 </Contact>
+                
                 <BLOG to="/blog" $click={click}>
-                    <motion.h2
-                        initial={{
-                            y: -200,
-                            transition: { type: 'spring', duration: 1.5, delay: 1 }
-                        }}
-                        animate={{
-                            y: 0,
-                            transition: { type: 'spring', duration: 1.5, delay: 1 }
-                        }}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                    >
+                    <motion.h2 initial={{ y: -200 }} animate={{ y: 0 }} transition={{ type: 'spring', duration: 1.5, delay: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                         BLOG
                     </motion.h2>
                 </BLOG>
+                
                 <WORK to="/work">
-                    <motion.h2
-                        initial={{
-                            y: -200,
-                            transition: { type: 'spring', duration: 1.5, delay: 1 }
-                        }}
-                        animate={{
-                            y: 0,
-                            transition: { type: 'spring', duration: 1.5, delay: 1 }
-                        }}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                    >
+                    <motion.h2 initial={{ y: -200 }} animate={{ y: 0 }} transition={{ type: 'spring', duration: 1.5, delay: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                         WORK
                     </motion.h2>
                 </WORK>
+                
                 <EDUCATION to="/education" $click={click}>
-                    <motion.h2
-                        initial={{
-                            y: -200,
-                            transition: { type: 'spring', duration: 1.5, delay: 1 }
-                        }}
-                        animate={{
-                            y: 0,
-                            transition: { type: 'spring', duration: 1.5, delay: 1 }
-                        }}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                    >
+                    <motion.h2 initial={{ y: -200 }} animate={{ y: 0 }} transition={{ type: 'spring', duration: 1.5, delay: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                         EDUCATION
                     </motion.h2>
                 </EDUCATION>
 
                 <BottomBar>
                     <ABOUT to="/about" $click={click}>
-                        <motion.h2
-                            initial={{
-                                y: 200,
-                                transition: { type: 'spring', duration: 1.5, delay: 1 }
-                            }}
-                            animate={{
-                                y: 0,
-                                transition: { type: 'spring', duration: 1.5, delay: 1 }
-                            }}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                        >
+                        <motion.h2 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ type: 'spring', duration: 1.5, delay: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                             ABOUT
                         </motion.h2>
                     </ABOUT>
                     <SKILLS to="/skills">
-                        <motion.h2
-                            initial={{
-                                y: 200,
-                                transition: { type: 'spring', duration: 1.5, delay: 1 }
-                            }}
-                            animate={{
-                                y: 0,
-                                transition: { type: 'spring', duration: 1.5, delay: 1 }
-                            }}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                        >
+                        <motion.h2 initial={{ y: 200 }} animate={{ y: 0 }} transition={{ type: 'spring', duration: 1.5, delay: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                             MY SKILLS.
                         </motion.h2>
                     </SKILLS>
-
                 </BottomBar>
 
             </Container>
-            {showIntro ? <Intro click={click} /> : null}
+            
+            {/* Render Intro only on Desktop when clicked */}
+            {!isMobile && click ? <Intro click={click} /> : null}
+
+            {/* MOBILE ONLY LAYOUT */}
+            {isMobile && (
+              <MobileContainer>
+                 <PowerButton theme="light" />
+                 <LogoComponent theme="light" />
+                 <Intro isMobile={true} />
+              </MobileContainer>
+            )}
+
         </MainContainer>
     )
 }
