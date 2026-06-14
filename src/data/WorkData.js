@@ -17,7 +17,7 @@ export const Work = [
         description: "A responsive, clean, and attractive web application to showcase my skills, achievements, projects, and passion for technology.",
         tags: ["react", "vite", "styled-components", "motion"],
         demo: "https://hks-portfolio.vercel.app/",
-        github: "https://github.com/Abdulsf26",
+        github: "https://github.com/Abdulsf26/PORTFOLIO",
         hasDemo: true,
         hasGithub: true,
     },
